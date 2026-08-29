@@ -1,27 +1,31 @@
-#container {
+.home-content {
+  --background: #eef2f6;
+}
+
+.home-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 24px;
   text-align: center;
-
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
 }
 
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
-}
-
-#container p {
-  font-size: 16px;
-  line-height: 22px;
-
-  color: #8c8c8c;
-
+.bienvenida {
   margin: 0;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #2f3a4c;
 }
 
-#container a {
-  text-decoration: none;
+.usuario {
+  margin: 0 0 12px;
+  color: #3b4a5a;
+}
+
+.boton-logout {
+  width: 100%;
+  max-width: 320px;
 }

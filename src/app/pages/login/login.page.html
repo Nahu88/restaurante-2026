@@ -4,37 +4,69 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
+<ion-content class="ion-padding login-content">
 
-  <ion-item>
-    <ion-input
-      label="Correo"
-      labelPlacement="stacked"
-      type="email"
-      [(ngModel)]="email">
-    </ion-input>
-  </ion-item>
+  <form #loginForm="ngForm" (ngSubmit)="ingresar()" novalidate>
 
-  <ion-item>
-    <ion-input
-      label="Contraseña"
-      labelPlacement="stacked"
-      type="password"
-      [(ngModel)]="password">
-    </ion-input>
-  </ion-item>
+    <ion-item>
+      <ion-input
+        label="Correo"
+        labelPlacement="stacked"
+        type="email"
+        name="email"
+        autocomplete="email"
+        required
+        email
+        [(ngModel)]="email"
+        #emailModel="ngModel">
+      </ion-input>
+    </ion-item>
+    <ion-note color="danger" class="campo-error" *ngIf="emailModel.invalid && (emailModel.dirty || emailModel.touched)">
+      <span *ngIf="emailModel.errors?.['required']">El correo es obligatorio.</span>
+      <span *ngIf="emailModel.errors?.['email']">Ingresá un correo con formato válido.</span>
+    </ion-note>
 
-  <ion-button
-    expand="block"
-    class="ion-margin-top"
-    (click)="ingresar()">
+    <ion-item>
+      <ion-input
+        label="Contraseña"
+        labelPlacement="stacked"
+        type="password"
+        name="password"
+        autocomplete="current-password"
+        required
+        minlength="6"
+        [(ngModel)]="password"
+        #passwordModel="ngModel">
+      </ion-input>
+    </ion-item>
+    <ion-note color="danger" class="campo-error" *ngIf="passwordModel.invalid && (passwordModel.dirty || passwordModel.touched)">
+      <span *ngIf="passwordModel.errors?.['required']">La contraseña es obligatoria.</span>
+      <span *ngIf="passwordModel.errors?.['minlength']">Debe tener al menos 6 caracteres.</span>
+    </ion-note>
 
-    Ingresar
+    <ion-button
+      expand="block"
+      class="ion-margin-top"
+      type="submit"
+      [disabled]="loginForm.invalid || cargando">
 
-  </ion-button>
+      {{ cargando ? 'Ingresando...' : 'Ingresar' }}
 
-  <p *ngIf="mensaje">
+    </ion-button>
+
+  </form>
+
+  <p class="mensaje-error" *ngIf="mensaje">
     {{ mensaje }}
   </p>
+
+  <div class="accesos-rapidos">
+    <p class="accesos-rapidos-title">Ingreso rápido (pruebas)</p>
+    <div class="chips">
+      <ion-chip *ngFor="let perfil of perfilesRapidos" (click)="ingresoRapido(perfil)">
+        <ion-label>{{ perfil.etiqueta }}</ion-label>
+      </ion-chip>
+    </div>
+  </div>
 
 </ion-content>

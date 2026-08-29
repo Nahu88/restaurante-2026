@@ -1,0 +1,21 @@
+<ion-content fullscreen="true" class="splash-content">
+  <div class="splash-container">
+
+    <img
+      class="splash-icon anim-icon"
+      src="assets/icons/favicon.png"
+      alt="Ícono de la aplicación">
+
+    <h1 class="splash-title anim-title">Restaurante 2026</h1>
+
+    <ul class="splash-integrantes">
+      <li
+        *ngFor="let integrante of integrantes; let i = index"
+        class="anim-item"
+        [style.animation-delay.ms]="700 + (i * 220)">
+        {{ integrante }}
+      </li>
+    </ul>
+
+  </div>
+</ion-content>

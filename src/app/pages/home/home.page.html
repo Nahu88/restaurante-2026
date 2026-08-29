@@ -1,20 +1,24 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
+    <ion-title>Inicio</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="home-content">
+  <div class="home-container">
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+    <h1 class="bienvenida">¡Bienvenido/a!</h1>
+    <p class="usuario" *ngIf="userEmail">Sesión iniciada como <strong>{{ userEmail }}</strong></p>
+
+    <ion-button
+      expand="block"
+      color="danger"
+      class="boton-logout"
+      [disabled]="cerrandoSesion"
+      (click)="cerrarSesion()">
+      <ion-icon slot="start" name="log-out-outline"></ion-icon>
+      {{ cerrandoSesion ? 'Cerrando sesión...' : 'Cerrar sesión' }}
+    </ion-button>
+
   </div>
 </ion-content>
